@@ -1,1 +1,1 @@
-# Sentiment Analysis On Covid-19 Vaccination Sentiment Analysis
+# Covid-19 Vaccination Sentiment Analysis
