@@ -1,6 +1,6 @@
 from model.bert import BERT
 from dataset.tweets import Tweets
-from utils.utils import Evaluate, Evaluate_range
+from utils.utils import Evaluate
 
 import torch
 import torch.nn as nn
@@ -32,9 +32,6 @@ if __name__ == "__main__":
 
     val_data = Tweets(df='data/tweets.csv', label='sentiment', subset='val')
     val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=False)
-
-    # val_data2 = Tweets(df='data/tweets.csv', label='sentiment', subset='val')
-    # val_loader2 = DataLoader(val_data2, batch_size=batch_size, shuffle=False)
 
     step = 0
     report_loss = 0.0
@@ -82,11 +79,4 @@ if __name__ == "__main__":
 
         # save model
         torch.save(model.state_dict(), 'save_sentiment/'+str(epoch)+'.pt')
-
-        cm = Evaluate_range(model, val_loader, device, epoch, 'val/', rate=0.5, cls=3)
-        for c in range(3):
-            print(cm[c, :])
-            count = sum(cm[c, :])
-            print(cm[c, :]/count)
-
 
